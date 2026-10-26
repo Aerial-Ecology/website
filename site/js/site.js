@@ -1,0 +1,81 @@
+// Mobile menu
+(function () {
+  const nav = document.getElementById('nav');
+  const btn = document.querySelector('.menu-toggle');
+  if (nav && btn) {
+    btn.addEventListener('click', function () {
+      const open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+  }
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+})();
+
+// Enquiry form.
+// The endpoint comes from FORM_ENDPOINT in src/build.py (for example a Formspree form URL). With an endpoint,
+// enquiries are posted directly and a confirmation is shown. Without one, the form falls back to opening a
+// pre-filled email so no enquiry is lost.
+(function () {
+  const form = document.getElementById('enquiry');
+  if (!form) return;
+  const status = document.getElementById('form-status');
+  const button = form.querySelector('button[type="submit"]');
+  const loadedAt = Date.now();
+  const MIN_SECONDS = 3; // submissions faster than this are almost certainly bots
+
+  function summary(data) {
+    const services = data.getAll('service').join(', ') || 'Not specified';
+    return [
+      'Name: ' + data.get('name'),
+      'Organisation: ' + (data.get('organisation') || '-'),
+      'Email: ' + data.get('email'),
+      'Phone: ' + (data.get('phone') || '-'),
+      'Site location: ' + (data.get('location') || '-'),
+      'Services: ' + services,
+      'Survey window: ' + (data.get('timing') || '-'),
+      '',
+      data.get('message')
+    ].join('\n');
+  }
+
+  function confirm() {
+    form.classList.add('sent');
+    status.className = 'form-status ok';
+    status.innerHTML = '<strong>Thank you, your enquiry has been sent.</strong>We’ll reply by email. If it’s urgent, email info@aerial-ecology.co.uk.';
+    status.focus();
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    // Spam protection: hidden honeypot field and a minimum time on the page. Bots see a normal confirmation.
+    if (data.get('_gotcha') || (Date.now() - loadedAt) / 1000 < MIN_SECONDS) { confirm(); return; }
+    data.set('service', data.getAll('service').join(', ') || 'Not specified');
+    const endpoint = form.dataset.endpoint;
+    status.className = 'form-status';
+
+    if (!endpoint) {
+      const subject = 'Project enquiry from ' + data.get('name');
+      window.location.href = 'mailto:info@aerial-ecology.co.uk?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(summary(new FormData(form)));
+      status.textContent = 'Your email app should open with the enquiry filled in. If it doesn’t, email info@aerial-ecology.co.uk directly.';
+      return;
+    }
+
+    status.textContent = 'Sending…';
+    button.disabled = true;
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      confirm();
+    } catch (err) {
+      status.classList.add('err');
+      status.textContent = 'Sorry, the form couldn’t send just now. Please try again, or email info@aerial-ecology.co.uk and we’ll pick it up.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();

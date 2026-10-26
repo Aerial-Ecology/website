@@ -1,0 +1,97 @@
+title: Contact | Aerial Ecology
+description: Contact Aerial Ecology about thermal bat emergence surveys, thermal skylark nest detection, drone habitat mapping and GIS, and specialist ecological survey support across the UK.
+nav: contact
+crumb: Contact
+---
+<section class="page-hero">
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="stack-lg">
+      <p class="crumbs"><a href="index.html">Home</a> / Contact</p>
+      <h1>Discuss your project</h1>
+      <p class="lead">Tell us about the site, the species and your timeline. The more we know, the more useful our first reply will be.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap contact-grid">
+    <!-- The form endpoint is set by FORM_ENDPOINT in src/build.py. -->
+    <form class="form card" id="enquiry" action="{FORM_ACTION}" method="POST" data-endpoint="{FORM_ENDPOINT}" novalidate>
+      <input type="hidden" name="_subject" value="Website enquiry">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="f-org">Organisation <span class="opt">(optional)</span></label>
+        <input id="f-org" name="organisation" type="text" autocomplete="organization">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone <span class="opt">(optional)</span></label>
+        <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="f-location">Site location or postcode</label>
+        <input id="f-location" name="location" type="text" placeholder="e.g. Lewes, East Sussex">
+      </div>
+      <div class="field">
+        <label for="f-timing">Survey window <span class="opt">(optional)</span></label>
+        <input id="f-timing" name="timing" type="text" placeholder="e.g. May to August 2027">
+      </div>
+      <fieldset class="field full" style="border:0;padding:0;margin:0">
+        <legend style="font-size:14px;font-weight:500;margin-bottom:8px">What do you need help with?</legend>
+        <div class="checks">
+          <label><input id="s-bats" type="checkbox" name="service" value="Thermal bat emergence and re-entry surveys"> Thermal bat surveys</label>
+          <label><input id="s-birds" type="checkbox" name="service" value="Thermal skylark nest detection surveys"> Skylark nest surveys</label>
+          <label><input id="s-bng" type="checkbox" name="service" value="Habitat mapping and BNG support"> Habitat mapping &amp; BNG support</label>
+          <label><input id="s-gis" type="checkbox" name="service" value="GIS and modelling"> GIS &amp; modelling</label>
+          <label><input id="s-lidar" type="checkbox" name="service" value="LiDAR and 3D"> LiDAR &amp; 3D</label>
+          <label><input id="s-species" type="checkbox" name="service" value="Protected species support"> Species support</label>
+          <label><input id="s-rd" type="checkbox" name="service" value="Research collaboration"> R&amp;D</label>
+        </div>
+      </fieldset>
+      <div class="field full">
+        <label for="f-message">About the project</label>
+        <textarea id="f-message" name="message" required placeholder="Type of structure or habitat, site size, access constraints, any survey work already done..."></textarea>
+      </div>
+      <div class="field full" style="position:absolute;left:-9999px" aria-hidden="true">
+        <label for="f-hp">Leave this empty</label>
+        <input id="f-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <label class="consent field full" for="f-consent">
+        <input id="f-consent" name="consent" type="checkbox" required>
+        <span>I'm happy for Aerial Ecology to use these details to reply to my enquiry. See our <a class="textlink" href="privacy.html">privacy notice</a>.</span>
+      </label>
+      <div class="field full"><button class="btn" type="submit">Send enquiry &rarr;</button></div>
+      <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+      <p class="note full">We only use these details to respond to your enquiry. They are sent securely to our inbox through a form service and are not used for marketing.</p>
+    </form>
+
+    <div class="info">
+      <div>
+        <span class="label">Email</span>
+        <a href="mailto:info@aerial-ecology.co.uk" style="font-size:19px">info@aerial-ecology.co.uk</a>
+      </div>
+      <div>
+        <span class="label">Based in</span>
+        <p class="muted">East Sussex, working across the South East and the UK</p>
+      </div>
+      <div>
+        <span class="label">Registered office</span>
+        <address>Aerial Ecology Ltd<br>Suite 1 Just Simply Organised<br>Ringles Cross<br>Uckfield, England<br>TN22 1HB</address>
+      </div>
+      <div>
+        <span class="label">Follow our work</span>
+        <p><a class="textlink" href="https://www.linkedin.com/company/aerial-ecology">LinkedIn</a> &middot; <a class="textlink" href="https://www.youtube.com/@Aerial_Ecology">YouTube</a> &middot; <a class="textlink" href="https://sketchfab.com/Aerial-Ecology">Sketchfab</a></p>
+      </div>
+      <div class="frame" style="aspect-ratio:4/3">
+        <img src="images/thermal-drone-hover.jpg" alt="Thermal survey drone hovering above grass" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
