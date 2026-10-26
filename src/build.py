@@ -22,10 +22,10 @@ SITE_URL = "https://www.aerial-ecology.co.uk"
 
 # Enquiry form endpoint. Paste the form service URL here (for example a Formspree form URL such as
 # https://formspree.io/f/abcdwxyz), then rebuild. Left empty, the form falls back to opening an email.
-FORM_ENDPOINT = ""
+FORM_ENDPOINT = "https://formspree.io/f/xbggggav"
 
 # Company number for the footer (Companies House). Left empty, it is not shown.
-COMPANY_NUMBER = ""
+COMPANY_NUMBER = "16701025"
 
 LOGO = '<img src="images/logo-reversed.png" alt="Aerial Ecology" width="{w}" height="{h}">'
 
