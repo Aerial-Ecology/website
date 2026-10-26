@@ -1,3 +1,24 @@
 # Aerial Ecology website
 
-Source for www.aerial-ecology.co.uk.
+Source for www.aerial-ecology.co.uk, published with GitHub Pages.
+
+- `src/pages/` holds the page content. Each file starts with a short header (title, description, nav and so on), then `---`, then the page body.
+- `src/build.py` combines each page with the shared header and footer and writes the finished pages into `site/`, along with `sitemap.xml` and `robots.txt`.
+- `site/css`, `site/js` and `site/images` hold the design, scripts and images.
+
+## Editing
+
+1. Edit a page in `src/pages/`.
+2. Run `python3 src/build.py`.
+3. Open `site/index.html` in a browser to check it.
+
+Merging to `main` publishes the site automatically (see `.github/workflows/pages.yml`).
+
+## Settings in `src/build.py`
+
+- `FORM_ENDPOINT`: the enquiry form service URL (for example a Formspree form). Empty means the form opens a pre-filled email instead.
+- `COMPANY_NUMBER`: shown in the footer when set.
+
+## Custom domain
+
+Not connected yet. When the domain moves, add a `site/CNAME` file containing `www.aerial-ecology.co.uk` and update the DNS website records only. Keep the Microsoft 365 email records unchanged.
