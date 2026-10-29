@@ -20,9 +20,10 @@ PAGES = ROOT / "src" / "pages"
 OUT = ROOT / "site"
 SITE_URL = "https://www.aerial-ecology.co.uk"
 
-# Enquiry form endpoint. Paste the form service URL here (for example a Formspree form URL such as
-# https://formspree.io/f/abcdwxyz), then rebuild. Left empty, the form falls back to opening an email.
-FORM_ENDPOINT = "https://formspree.io/f/xbggggav"
+# Enquiry form. Enquiries are sent by Web3Forms to the address the access key was created for.
+# Paste the access key from web3forms.com here, then rebuild. Left empty, the form falls back to opening an email.
+FORM_ACCESS_KEY = ""
+FORM_ENDPOINT = "https://api.web3forms.com/submit" if FORM_ACCESS_KEY else ""
 
 # Company number for the footer (Companies House). Left empty, it is not shown.
 COMPANY_NUMBER = "16701025"
@@ -171,7 +172,7 @@ def schema_for(meta, url, crumb):
 def main():
     OUT.mkdir(exist_ok=True)
     if not FORM_ENDPOINT:
-        print("WARNING: FORM_ENDPOINT is empty, so the enquiry form will open an email instead of sending.")
+        print("WARNING: FORM_ACCESS_KEY is empty, so the enquiry form will open an email instead of sending.")
     urls = []
     for path in sorted(PAGES.glob("*.html")):
         meta, body = parse(path)
@@ -190,7 +191,7 @@ def main():
             cur_services=cur["services"], cur_work=cur["work"], cur_about=cur["about"], cur_contact=cur["contact"],
         )
         company = ", company no. " + COMPANY_NUMBER if COMPANY_NUMBER else ""
-        body = body.replace("{FORM_ENDPOINT}", FORM_ENDPOINT).replace(
+        body = body.replace("{FORM_ENDPOINT}", FORM_ENDPOINT).replace("{FORM_ACCESS_KEY}", FORM_ACCESS_KEY).replace(
             "{FORM_ACTION}", FORM_ENDPOINT or "mailto:info@aerial-ecology.co.uk")
         html = head + body + FOOT.format(logo=LOGO.format(w=250, h=60), company=company)
         (OUT / path.name).write_text(html, encoding="utf-8")

@@ -14,7 +14,7 @@
 })();
 
 // Enquiry form.
-// The endpoint comes from FORM_ENDPOINT in src/build.py (for example a Formspree form URL). With an endpoint,
+// The endpoint comes from FORM_ENDPOINT in src/build.py (Web3Forms). With an endpoint,
 // enquiries are posted directly and a confirmation is shown. Without one, the form falls back to opening a
 // pre-filled email so no enquiry is lost.
 (function () {
@@ -49,7 +49,7 @@
     e.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
-    // Spam filtering is left to the form service (it discards submissions that fill the hidden _gotcha field),
+    // Spam filtering is left to the form service (it discards submissions that tick the hidden botcheck box),
     // so a real enquiry is never dropped silently in the browser.
     data.set('service', data.getAll('service').join(', ') || 'Not specified');
     const endpoint = form.dataset.endpoint;
@@ -65,8 +65,13 @@
     status.textContent = 'Sending…';
     button.disabled = true;
     try {
-      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error(res.status);
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(Object.fromEntries(data)),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message || res.status);
       form.reset();
       confirm();
     } catch (err) {

@@ -16,7 +16,7 @@ Merging to `main` publishes the site automatically (see `.github/workflows/pages
 
 ## Settings in `src/build.py`
 
-- `FORM_ENDPOINT`: the enquiry form service URL (for example a Formspree form). Empty means the form opens a pre-filled email instead.
+- `FORM_ACCESS_KEY`: the Web3Forms access key for the enquiry form. Empty means the form opens a pre-filled email instead.
 - `COMPANY_NUMBER`: shown in the footer when set.
 
 ## Custom domain

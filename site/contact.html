@@ -64,8 +64,10 @@
 <section style="padding-top:0">
   <div class="wrap contact-grid">
     <!-- The form endpoint is set by FORM_ENDPOINT in src/build.py. -->
-    <form class="form card" id="enquiry" action="https://formspree.io/f/xbggggav" method="POST" data-endpoint="https://formspree.io/f/xbggggav" novalidate>
-      <input type="hidden" name="_subject" value="Website enquiry">
+    <form class="form card" id="enquiry" action="mailto:info@aerial-ecology.co.uk" method="POST" data-endpoint="" novalidate>
+      <input type="hidden" name="access_key" value="">
+      <input type="hidden" name="subject" value="Website enquiry">
+      <input type="hidden" name="from_name" value="Aerial Ecology website">
       <div class="field">
         <label for="f-name">Name</label>
         <input id="f-name" name="name" type="text" autocomplete="name" required>
@@ -106,7 +108,7 @@
         <label for="f-message">About the project</label>
         <textarea id="f-message" name="message" required placeholder="Type of structure or habitat, site size, access constraints, any survey work already done..."></textarea>
       </div>
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <div class="field full"><button class="btn" type="submit">Send enquiry &rarr;</button></div>
       <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
       <p class="note full">We only use your details to reply to your enquiry, never for marketing. See our <a class="textlink" href="privacy.html">privacy notice</a>.</p>
