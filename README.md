@@ -21,4 +21,4 @@ Merging to `main` publishes the site automatically (see `.github/workflows/pages
 
 ## Custom domain
 
-Not connected yet. When the domain moves, add a `site/CNAME` file containing `www.aerial-ecology.co.uk` and update the DNS website records only. Keep the Microsoft 365 email records unchanged.
+Live at www.aerial-ecology.co.uk. The custom domain is set in the repository's Settings, Pages (no `CNAME` file is needed with the Actions deploy). Only the website DNS records point at GitHub; keep the Microsoft 365 email records unchanged.
