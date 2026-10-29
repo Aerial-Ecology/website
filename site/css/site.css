@@ -218,9 +218,7 @@ figcaption { font-size: 14px; color: var(--muted); }
 .checks label { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 400; cursor: pointer; }
 .checks input { accent-color: var(--accent); }
 .field input[type="checkbox"] { width: auto; padding: 0; flex: none; }
-.checks label, .consent { white-space: normal; }
-.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); }
-.consent input { margin-top: 4px; accent-color: var(--accent); }
+.checks label { white-space: normal; }
 .form-status { grid-column: 1 / -1; font-size: 15px; }
 .form-status.ok { color: var(--accent-2); } .form-status.err { color: #ff8f80; }
 .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }

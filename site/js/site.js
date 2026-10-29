@@ -22,8 +22,6 @@
   if (!form) return;
   const status = document.getElementById('form-status');
   const button = form.querySelector('button[type="submit"]');
-  const loadedAt = Date.now();
-  const MIN_SECONDS = 3; // submissions faster than this are almost certainly bots
 
   function summary(data) {
     const services = data.getAll('service').join(', ') || 'Not specified';
@@ -51,8 +49,8 @@
     e.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
-    // Spam protection: hidden honeypot field and a minimum time on the page. Bots see a normal confirmation.
-    if (data.get('_gotcha') || (Date.now() - loadedAt) / 1000 < MIN_SECONDS) { confirm(); return; }
+    // Spam filtering is left to the form service (it discards submissions that fill the hidden _gotcha field),
+    // so a real enquiry is never dropped silently in the browser.
     data.set('service', data.getAll('service').join(', ') || 'Not specified');
     const endpoint = form.dataset.endpoint;
     status.className = 'form-status';
